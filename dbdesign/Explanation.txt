@@ -1,0 +1,7 @@
+I think we don't need database like MySQL, MsSQL, PostgreSQL, Oracle or some else etc.
+Because our project haven't any authentication form, this game is just need to save
+singleplayer mode's players highscore. And if we use database server in this project,
+players must install database server too. It's not good idea.
+But game should save our players names, scores, status. So we decide to save players
+score in file like TXT, XML, YML or else.
+Is it okey? Teacher?
