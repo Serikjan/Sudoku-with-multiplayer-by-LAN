@@ -2,6 +2,14 @@ I think we don't need database like MySQL, MsSQL, PostgreSQL, Oracle or some els
 Because our project haven't any authentication form, this game is just need to save
 singleplayer mode's players highscore. And if we use database server in this project,
 players must install database server too. It's not good idea.
-But game should save our players names, scores, status. So we decide to save players
+But game should save our players names, best scores, status. So we decide to save players
 score in file like TXT, XML, YML or else.
 Is it okey? Teacher?
+
+idPlayer saves player id -> int
+name saves player name char -> string
+difficulty saves easy(1), medium(2), hard(3) -> int
+bestScore saves score -> int
+timeMin saves time's minute -> int
+timSec saves tims's second -> int
+status saves player win(0) or lose(1) -> int
