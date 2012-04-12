@@ -1,5 +1,5 @@
 import java.awt.BorderLayout;
-import javax.swing.JFrame;
+import javax.swing.*;
 /**
  * Main class of program.
  *
@@ -11,18 +11,17 @@ public class Game extends JFrame {
         super("Sudoku");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
-        
- 
+                
         Board board = new Board();
        
         add(board, BorderLayout.EAST);
-
-        pack();
+        Menu gamemenu=new Menu(); 
+        setJMenuBar(gamemenu); 
+        pack(); 
         setLocationRelativeTo(null);
         setVisible(true);
     }
 	public static void main(String[] args) {
-        
         new Game();
 	}
 }	
