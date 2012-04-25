@@ -10,7 +10,7 @@ public class Board extends JPanel {
     private JPanel[][] panels;      // Panels holding the cells.
 
     /**
-     * Constructs the panel, adds sub panels and adds cells to these sub panels.
+     * Panel->subpanel->cell
      */
     public Board() {
         super(new GridLayout(3, 3));
