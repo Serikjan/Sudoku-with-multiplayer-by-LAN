@@ -5,6 +5,7 @@ import javax.swing.*;
  *
  * @author HP
  */
+@SuppressWarnings("serial")
 public class Game extends JFrame {
 	
 	public Game() {
@@ -15,8 +16,7 @@ public class Game extends JFrame {
         Board board = new Board();
        
         add(board, BorderLayout.EAST);
-        Menu gamemenu=new Menu(); 
-        setJMenuBar(gamemenu); 
+        //setJMenuBar(gamemenu); 
         pack(); 
         setLocationRelativeTo(null);
         setVisible(true);

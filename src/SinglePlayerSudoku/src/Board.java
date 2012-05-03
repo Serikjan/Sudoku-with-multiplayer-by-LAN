@@ -1,9 +1,7 @@
 import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
-
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class Board extends JPanel {
 
     private Cell[][] cells;       // Array of cells.
@@ -21,6 +19,7 @@ public class Board extends JPanel {
                 panels[y][x] = new JPanel(new GridLayout(3, 3));
                 panels[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
                 add(panels[y][x]);
+                
             }
         }
 

@@ -11,6 +11,7 @@ import javax.swing.JLabel;
  *
  * @author HP
  */
+@SuppressWarnings("serial")
 public class Cell extends JLabel {
     private int x;      // X position in game.
     private int y;      // Y position in game.
@@ -40,6 +41,7 @@ public class Cell extends JLabel {
      */
     public void setNumber(int number, boolean userInput) {
         setForeground(userInput ? Color.BLUE : Color.BLACK);
+        
         setText(number > 0 ? number + "" : "");
     }
 
