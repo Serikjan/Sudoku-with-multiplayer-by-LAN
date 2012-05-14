@@ -1,5 +1,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,7 +12,11 @@ public class Main extends JFrame implements ActionListener
 	/**
 	 * @param args
 	 */
-	private JButton[] button=new JButton[5];
+	private JButton buttonSinglePlayer;
+	private JButton buttonMultiplayer;
+	private JButton buttonOptions;
+	private JButton buttonHighScore;
+	private JButton buttonExit;
 	public Main()
 	{
 		this.setLayout(null);
@@ -20,31 +25,31 @@ public class Main extends JFrame implements ActionListener
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Sudoku");
 		
-		button[0]=new JButton("Singleplayer");
-		button[0].setBounds(40, 40, 120, 25);
-		button[0].addActionListener(this);
+		buttonSinglePlayer=new JButton("Singleplayer");
+		buttonSinglePlayer.setBounds(40, 40, 120, 25);
+		buttonSinglePlayer.addActionListener(this);
 		
-		button[1]=new JButton("Multiplayer");
-		button[1].setBounds(40, 75, 120, 25);
-		button[1].addActionListener(this);
+		buttonMultiplayer=new JButton("Multiplayer");
+		buttonMultiplayer.setBounds(40, 75, 120, 25);
+		buttonMultiplayer.addActionListener(this);
 		
-		button[2]=new JButton("Options");
-		button[2].setBounds(40, 110, 120, 25);
-		button[2].addActionListener(this);
+		buttonOptions=new JButton("Options");
+		buttonOptions.setBounds(40, 110, 120, 25);
+		buttonOptions.addActionListener(this);
 		
-		button[3]=new JButton("Highscore");
-		button[3].setBounds(40, 145, 120, 25);
-		button[3].addActionListener(this);
+		buttonHighScore=new JButton("Highscore");
+		buttonHighScore.setBounds(40, 145, 120, 25);
+		buttonHighScore.addActionListener(this);
 		
-		button[4]=new JButton("Exit");
-		button[4].setBounds(40, 180, 120, 25);
-		button[4].addActionListener(this);
+		buttonExit=new JButton("Exit");
+		buttonExit.setBounds(40, 180, 120, 25);
+		buttonExit.addActionListener(this);
 		
-		getContentPane().add(button[0]);
-		getContentPane().add(button[1]);
-		getContentPane().add(button[2]);
-		getContentPane().add(button[3]);
-		getContentPane().add(button[4]);
+		getContentPane().add(buttonSinglePlayer);
+		getContentPane().add(buttonMultiplayer);
+		getContentPane().add(buttonOptions);
+		getContentPane().add(buttonHighScore);
+		getContentPane().add(buttonExit);
 		
 	}
 	@SuppressWarnings("deprecation")
@@ -63,7 +68,16 @@ public class Main extends JFrame implements ActionListener
 		if (e.getActionCommand().equalsIgnoreCase("Singleplayer"))
 		{
 			this.dispose();
-			SelectPlayer s = new SelectPlayer();
+			SelectPlayer s = null;
+			try
+			{
+				s = new SelectPlayer();
+			}
+			catch (IOException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			s.show();
 		}
 		else if (e.getActionCommand().equalsIgnoreCase("Multiplayer"))
