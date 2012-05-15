@@ -1,22 +1,17 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
 
-public class NumberButton extends JPanel implements Observer,ActionListener{
+public class NumberButton extends JPanel implements Observer{
 	ButtonGroup bgNumbers;
 	JToggleButton[] btnNumbers;
 	private Generator game;
@@ -36,7 +31,7 @@ public class NumberButton extends JPanel implements Observer,ActionListener{
         btnNumbers = new JToggleButton[9];
         for (int i = 0; i < 9; i++) {
             btnNumbers[i] = new JToggleButton("" + (i + 1));
-            btnNumbers[i].setPreferredSize(new Dimension(40, 40));
+            btnNumbers[i].setPreferredSize(new Dimension(50, 50));
             btnNumbers[i].setFocusable(false);
             bgNumbers.add(btnNumbers[i]);
             pnlNumbersNumbers.add(btnNumbers[i]);
@@ -58,12 +53,9 @@ public class NumberButton extends JPanel implements Observer,ActionListener{
      *
      * @param buttonController  Controller which controls all user actions.
      */
-    public void setController() {
+    public void setController(NumberController buttonController) {
         for (int i = 0; i < 9; i++)
-            btnNumbers[i].addActionListener(null);
-    }
-    public void actionPerformed(ActionEvent e) {
-            game.setSelectedNumber(Integer.parseInt(e.getActionCommand()));
+            btnNumbers[i].addActionListener(buttonController);
     }
 }
 

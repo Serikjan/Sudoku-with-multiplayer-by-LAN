@@ -1,5 +1,7 @@
 public enum UpdateAction {
-	SELECTED_NUMBER,
+	NEW_GAME,
+    CHECK,
+    SELECTED_NUMBER,
     CANDIDATES,
-  
+    HELP
 }

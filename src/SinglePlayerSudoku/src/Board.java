@@ -38,13 +38,50 @@ public class Board extends JPanel implements Observer {
     
     public void update(Observable o, Object arg) {
         switch ((UpdateAction)arg) {
-            
+            case NEW_GAME:
+                setGame((Generator)o);
+                break;
+            case CHECK:
+                setGameCheck((Generator)o);
+                break;
             case SELECTED_NUMBER:
             case CANDIDATES:
-                          
+            
                 break;
         }
     }
+    
+    public void setGame(Generator game) {
+        for (int y = 0; y < 9; y++) {
+            for (int x = 0; x < 9; x++) {
+                cells[y][x].setBackground(Color.WHITE);
+                cells[y][x].setNumber(game.getNumber(x, y), false);
+            }
+        }
+    }
+
+    /**
+     * Sets cells validity according to given game.
+     *
+     * @param game  Current game.
+     */
+    private void setGameCheck(Generator game) {
+        for (int y = 0; y < 9; y++) {
+            for (int x = 0; x < 9; x++) {
+                cells[y][x].setBackground(Color.WHITE);
+                if (cells[y][x].getForeground().equals(Color.BLUE))
+                    cells[y][x].setBackground(game.isCheckValid(x, y) ? Color.GREEN : Color.RED);
+            }
+        }
+    }
+
+    /**
+     * Shows the candidates according to given game.
+     *
+     * @param game  Current game.
+     */
+   
+
     
     public void setController(Controller sudokuController) {
         for (int y = 0; y < 3; y++) {

@@ -42,6 +42,10 @@ public class Controller implements MouseListener {
                 game.setNumber(x, y, number);
                 cell.setNumber(number, true);
             }
+            else if (e.getButton() == MouseEvent.BUTTON3 && !cell.getForeground().equals(Color.BLACK)) {
+                game.setNumber(x, y, 0);
+                cell.setNumber(0, false);
+            }
 
         }
     }
