@@ -67,6 +67,11 @@ public class SelectPlayer extends JFrame implements ActionListener
 			Main m = new Main();
 			m.show();
 		}
+		else if(e.getActionCommand().equalsIgnoreCase("Play"))
+		{
+			this.dispose();
+			Game g = new Game();
+		}
 	}
 	
 }

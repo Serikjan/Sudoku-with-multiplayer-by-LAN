@@ -30,6 +30,7 @@ public class Board extends JPanel {
                 panels[y / 3][x / 3].add(cells[y][x]);
             }
         }
+        
     }
 
 	

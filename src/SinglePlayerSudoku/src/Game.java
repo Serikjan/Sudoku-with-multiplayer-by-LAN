@@ -12,16 +12,14 @@ public class Game extends JFrame {
         super("Sudoku");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
-                
+        
         Board board = new Board();
-       
         add(board, BorderLayout.EAST);
+         
         //setJMenuBar(gamemenu); 
         pack(); 
         setLocationRelativeTo(null);
         setVisible(true);
     }
-	public static void main(String[] args) {
-        new Game();
-	}
+	
 }	
