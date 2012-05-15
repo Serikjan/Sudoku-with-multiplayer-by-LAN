@@ -99,8 +99,9 @@ public class SelectPlayer extends JFrame implements ActionListener
 		// TODO Auto-generated method stub
 		if (e.getActionCommand().equalsIgnoreCase("Add"))
 		{
-			listNames.setListData(vectorNames);
-			
+			this.dispose();
+			AddPlayer add = new AddPlayer();
+			add.show();
 			//vectorNames.addElement("Player2");
 		}
 		else if(e.getActionCommand().equalsIgnoreCase("Back"))
