@@ -14,8 +14,9 @@ public class Game extends JFrame {
         getContentPane().setLayout(new BorderLayout());
         
         Board board = new Board();
-        add(board, BorderLayout.EAST);
-         
+        add(board, BorderLayout.CENTER);
+        NumberButton numbers = new NumberButton();
+        add(numbers, BorderLayout.EAST);
         //setJMenuBar(gamemenu); 
         pack(); 
         setLocationRelativeTo(null);

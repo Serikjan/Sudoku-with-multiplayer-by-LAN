@@ -112,12 +112,9 @@ public class SelectPlayer extends JFrame implements ActionListener
 		}
 		else if(e.getActionCommand().equalsIgnoreCase("Play"))
 		{
-<<<<<<< HEAD
+
 			this.dispose();
 			Game g = new Game();
-=======
-			
->>>>>>> e5472b3b7e51473498daa87e1d164a94d7359b92
 		}
 	}
 	

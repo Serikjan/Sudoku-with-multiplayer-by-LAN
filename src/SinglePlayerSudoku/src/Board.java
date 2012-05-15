@@ -1,8 +1,11 @@
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class Board extends JPanel {
+public class Board extends JPanel implements Observer {
 
     private Cell[][] cells;       // Array of cells.
     private JPanel[][] panels;      // Panels holding the cells.
@@ -32,6 +35,22 @@ public class Board extends JPanel {
         }
         
     }
-
+    
+    public void update(Observable o, Object arg) {
+        switch ((UpdateAction)arg) {
+            
+            case SELECTED_NUMBER:
+            case CANDIDATES:
+                          
+                break;
+        }
+    }
+    
+    public void setController(Controller sudokuController) {
+        for (int y = 0; y < 3; y++) {
+            for (int x = 0; x < 3; x++)
+                panels[y][x].addMouseListener(sudokuController);
+        }
+    }
 	
 } 
