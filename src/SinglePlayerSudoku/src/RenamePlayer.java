@@ -2,8 +2,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -14,7 +16,7 @@ import javax.swing.JTextField;
 
 
 @SuppressWarnings("serial")
-public class AddPlayer extends JFrame implements ActionListener, KeyListener
+public class RenamePlayer extends JFrame implements ActionListener, KeyListener
 {
 	private JLabel labelName;
 	private JTextField textName;
@@ -23,14 +25,16 @@ public class AddPlayer extends JFrame implements ActionListener, KeyListener
 	private File fileDir;
 	private File fileNames;
 	private String stringPath;
+	private String selectedName;
 	
-	AddPlayer() throws IOException
+	RenamePlayer(String Name) throws IOException
 	{
 		this.setLayout(null);
 		this.setBounds(500,200,200,160);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setTitle("Add a player");
+		this.setTitle("Rename a player");
+		selectedName = Name;
 		
 		labelName = new JLabel("Player's name:");
 		labelName.setBounds(10,10,100,25);
@@ -67,19 +71,45 @@ public class AddPlayer extends JFrame implements ActionListener, KeyListener
 		{
 			if(fileNames.exists())
 			{
+				String allNames="";
+				int i=0;
 				BufferedWriter writer = null;
 				try
 				{
-					writer = new BufferedWriter(new FileWriter(fileNames,true));
-					if(textName.getText()!="")
+					BufferedReader reader = new BufferedReader(new FileReader(fileNames));
+					String tmp;
+					while((tmp = reader.readLine())!= null)
 					{
-						writer.newLine();
-						writer.write(textName.getText());
+						String name = (new String(tmp.getBytes(),"UTF-8"));
+						if(name.equals(selectedName))
+						{
+							if(i==0)
+							{
+								allNames=textName.getText();
+							}
+							else
+							{
+								allNames=allNames+"\n"+textName.getText();
+							}
+							i++;
+						}
+						else
+						{
+							if(i==0)
+							{
+								allNames=name;
+							}
+							else
+							{
+								allNames=allNames+"\n"+name;
+							}
+							i++;
+						}
 					}
-					else
-					{
-						
-					}
+					reader.close();
+					
+					writer = new BufferedWriter(new FileWriter(fileNames,false));
+					writer.write(allNames);
 					writer.close();
 				}
 				catch (IOException e2)

@@ -17,6 +17,7 @@ public class Main extends JFrame implements ActionListener
 	private JButton buttonOptions;
 	private JButton buttonHighScore;
 	private JButton buttonExit;
+	
 	public Main()
 	{
 		this.setLayout(null);
@@ -52,6 +53,7 @@ public class Main extends JFrame implements ActionListener
 		getContentPane().add(buttonExit);
 		
 	}
+	
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args)
 	{
@@ -68,17 +70,17 @@ public class Main extends JFrame implements ActionListener
 		if (e.getActionCommand().equalsIgnoreCase("Singleplayer"))
 		{
 			this.dispose();
-			SelectPlayer s = null;
+			SelectPlayer selectDialog = null;
 			try
 			{
-				s = new SelectPlayer();
+				selectDialog = new SelectPlayer();
+				selectDialog.show();
 			}
 			catch (IOException e1)
 			{
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			s.show();
 		}
 		else if (e.getActionCommand().equalsIgnoreCase("Multiplayer"))
 		{
@@ -86,11 +88,15 @@ public class Main extends JFrame implements ActionListener
 		}
 		else if (e.getActionCommand().equalsIgnoreCase("Options"))
 		{
-			
+			this.dispose();
+			Options optionDialog = new Options();
+			optionDialog.show();
 		}
 		else if (e.getActionCommand().equalsIgnoreCase("Highscore"))
 		{
-			
+			this.dispose();
+			HighScore scoreDialog = new HighScore();
+			scoreDialog.show();
 		}
 		else if (e.getActionCommand().equalsIgnoreCase("Exit"))
 		{
@@ -98,7 +104,7 @@ public class Main extends JFrame implements ActionListener
 		}
 		else
 		{
-			System.out.println("Error!");
+			System.out.println("Unknown error in ActionListener!");
 			this.dispose();
 		}
 	}
