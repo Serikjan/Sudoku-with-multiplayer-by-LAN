@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
 
+
 @SuppressWarnings("serial")
 public class Options extends JFrame implements ActionListener
 {
@@ -37,7 +38,11 @@ public class Options extends JFrame implements ActionListener
 		labelDifficult = new JLabel("Difficulty:");
 		labelDifficult.setBounds(10,10,100,25);
 		
+		radioEasy = new JRadioButton("Easy",true);
+		radioEasy.setName("User");
+		
 		groupDifficulty = new ButtonGroup();
+		
 		//groupDifficulty
 		
 		this.add(labelDifficult);

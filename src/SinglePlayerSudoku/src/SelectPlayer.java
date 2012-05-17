@@ -128,12 +128,9 @@ public class SelectPlayer extends JFrame implements ActionListener, ListSelectio
 		}
 		else if(e.getActionCommand().equalsIgnoreCase("Play"))
 		{
-//<<<<<<< HEAD
-			//this.dispose();
-			//Sudoku playDialog = new Main();
-			//playDialog.show();
 			this.dispose();
 			Game g = new Game();
+			g.show();
 		}
 		else if(e.getActionCommand().equalsIgnoreCase("Rename"))
 		{
@@ -209,10 +206,6 @@ public class SelectPlayer extends JFrame implements ActionListener, ListSelectio
 		{
 			System.out.println("Unknown error in ActionListener!");
 			this.dispose();
-//=======
-
-			
-//>>>>>>> dbf8097a6504f51cca3b0640eea5b7df1b29b56f
 		}
 	}
 
