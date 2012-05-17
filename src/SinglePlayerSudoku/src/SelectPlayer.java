@@ -129,12 +129,8 @@ public class SelectPlayer extends JFrame implements ActionListener, ListSelectio
 		else if(e.getActionCommand().equalsIgnoreCase("Play"))
 		{
 			this.dispose();
-<<<<<<< HEAD
-			Game g = new Game();
-			g.show();
-=======
 			Game g = new Game(listNames.getSelectedValue().toString());
->>>>>>> 8b0f046be9a46796301d9ce8672366dcd0eedc84
+			g.show();
 		}
 		else if(e.getActionCommand().equalsIgnoreCase("Rename"))
 		{
