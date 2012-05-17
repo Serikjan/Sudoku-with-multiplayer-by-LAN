@@ -73,14 +73,7 @@ public class Board extends JPanel implements Observer {
                     cells[y][x].setBackground(game.isCheckValid(x, y) ? Color.GREEN : Color.RED);
             }
         }
-    }
-
-    /**
-     * Shows the candidates according to given game.
-     *
-     * @param game  Current game.
-     */
-   
+    }   
 
     
     public void setController(Controller sudokuController) {
