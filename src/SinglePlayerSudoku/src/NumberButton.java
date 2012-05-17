@@ -1,12 +1,16 @@
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
@@ -14,19 +18,19 @@ import javax.swing.JToggleButton;
 public class NumberButton extends JPanel implements Observer{
 	ButtonGroup bgNumbers;
 	JToggleButton[] btnNumbers;
-	private Generator game;
 	
-	public NumberButton() {
+	public NumberButton(String p_name) {
         super(new BorderLayout());
-
+        
         JPanel pnlNumbers = new JPanel();
+        JLabel plname=new JLabel(p_name);
         pnlNumbers.setLayout(new BoxLayout(pnlNumbers, BoxLayout.PAGE_AXIS));
         pnlNumbers.setBorder(BorderFactory.createTitledBorder(" Numbers "));
-        add(pnlNumbers, BorderLayout.NORTH);
-       
+        add(plname, BorderLayout.NORTH);
+        add(pnlNumbers, BorderLayout.SOUTH);
+         
         JPanel pnlNumbersNumbers = new JPanel(new GridLayout(3, 3));
         pnlNumbers.add(pnlNumbersNumbers);
-
         bgNumbers = new ButtonGroup();
         btnNumbers = new JToggleButton[9];
         for (int i = 0; i < 9; i++) {

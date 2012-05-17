@@ -133,7 +133,7 @@ public class SelectPlayer extends JFrame implements ActionListener, ListSelectio
 			//Sudoku playDialog = new Main();
 			//playDialog.show();
 			this.dispose();
-			Game g = new Game();
+			Game g = new Game(listNames.getSelectedValue().toString());
 		}
 		else if(e.getActionCommand().equalsIgnoreCase("Rename"))
 		{

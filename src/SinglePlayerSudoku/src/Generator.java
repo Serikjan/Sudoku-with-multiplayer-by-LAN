@@ -19,7 +19,7 @@ public class Generator extends Observable {
     }
 
     /**
-     * Generates a new Sudoku game.<br />
+     * Generates a new Sudoku game.
      * All observers will be notified, update action: new game.
      */
     public void newGame() {
@@ -30,7 +30,7 @@ public class Generator extends Observable {
     }
 
     /**
-     * Checks user input agains the solution and puts it into a check matrix.<br />
+     * Checks user input with the solution and puts it into a check matrix.
      * All observers will be notified, update action: check.
      */
     public void checkGame() {
@@ -43,15 +43,9 @@ public class Generator extends Observable {
         notifyObservers(UpdateAction.CHECK);
     }
 
-    /**
-     * Sets help turned on or off.<br />
-     * All observers will be notified, update action: help.
-     * 
-     * @param help True for help on, false for help off.
-     */
    
     /**
-     * Sets selected number to user input.<br />
+     * Sets selected number to user input.
      * All observers will be notified, update action: selected number.
      *
      * @param selectedNumber    Number selected by user.
@@ -70,12 +64,6 @@ public class Generator extends Observable {
     public int getSelectedNumber() {
         return selectedNumber;
     }
-
-    /**
-     * Returns whether help is turned on or off.
-     *
-     * @return True if help is turned on, false if help is turned off.
-     */
    
     /**
      * Returns whether selected number is candidate at given position.
@@ -115,10 +103,6 @@ public class Generator extends Observable {
     /**
      * Returns whether user input is valid of given position.
      *
-     * @param x     X position in game.
-     * @param y     Y position in game.
-     * @return      True if user input of given position is valid, false
-     *              otherwise.
      */
     public boolean isCheckValid(int x, int y) {
         return check[y][x];
@@ -126,11 +110,6 @@ public class Generator extends Observable {
 
     /**
      * Returns whether given number is candidate on x axis for given game.
-     *
-     * @param game      Game to check.
-     * @param y         Position of x axis to check.
-     * @param number    Number to check.
-     * @return          True if number is candidate on x axis, false otherwise.
      */
     private boolean isPossibleX(int[][] game, int y, int number) {
         for (int x = 0; x < 9; x++) {
@@ -142,11 +121,6 @@ public class Generator extends Observable {
 
     /**
      * Returns whether given number is candidate on y axis for given game.
-     *
-     * @param game      Game to check.
-     * @param x         Position of y axis to check.
-     * @param number    Number to check.
-     * @return          True if number is candidate on y axis, false otherwise.
      */
     private boolean isPossibleY(int[][] game, int x, int number) {
         for (int y = 0; y < 9; y++) {
@@ -158,12 +132,6 @@ public class Generator extends Observable {
 
     /**
      * Returns whether given number is candidate in block for given game.
-     *
-     * @param game      Game to check.
-     * @param x         Position of number on x axis in game to check.
-     * @param y         Position of number on y axis in game to check.
-     * @param number    Number to check.
-     * @return          True if number is candidate in block, false otherwise.
      */
     private boolean isPossibleBlock(int[][] game, int x, int y, int number) {
         int x1 = x < 3 ? 0 : x < 6 ? 3 : 6;
@@ -180,13 +148,6 @@ public class Generator extends Observable {
     /**
      * Returns next posible number from list for given position or -1 when list
      * is empty.
-     *
-     * @param game      Game to check.
-     * @param x         X position in game.
-     * @param y         Y position in game.
-     * @param numbers   List of remaining numbers.
-     * @return          Next possible number for position in game or -1 when
-     *                  list is empty.
      */
     private int getNextPossibleNumber(int[][] game, int x, int y, List<Integer> numbers) {
         while (numbers.size() > 0) {
@@ -200,9 +161,6 @@ public class Generator extends Observable {
     /**
      * Generates Sudoku game solution.
      *
-     * @param game      Game to fill, user should pass 'new int[9][9]'.
-     * @param index     Current index, user should pass 0.
-     * @return          Sudoku game solution.
      */
     private int[][] generateSolution(int[][] game, int index) {
         if (index > 80)
@@ -219,7 +177,7 @@ public class Generator extends Observable {
             int number = getNextPossibleNumber(game, x, y, numbers);
             if (number == -1)
                 return null;
-
+            
             game[y][x] = number;
             int[][] tmpGame = generateSolution(game, index + 1);
             if (tmpGame != null)
@@ -245,8 +203,7 @@ public class Generator extends Observable {
     }
 
     /**
-     * Generates Sudoku game from solution, user should use the other
-     * generateGame method. This method simple removes a number at a position.
+     * Generates Sudoku game from solution.
      */
     private int[][] generateGame(int[][] game, List<Integer> positions) {
         while (positions.size() > 0) {
@@ -313,8 +270,10 @@ public class Generator extends Observable {
      * @param game      Game to be copied.
      * @return          Copy of given game.
      */
+    
     private int[][] copy(int[][] game) {
-        int[][] copy = new int[9][9];
+    	int[][] copy = new int[9][9];
+    	
         for (int y = 0; y < 9; y++) {
             for (int x = 0; x < 9; x++)
                 copy[y][x] = game[y][x];
@@ -323,13 +282,14 @@ public class Generator extends Observable {
     }
 
     
-    /*
+    
     void print() {
         System.out.println();
         for (int y = 0; y < 9; y++) {
             for (int x = 0; x < 9; x++)
-                System.out.print(" " + game[y][x]);
+                System.out.print(" " + solution[y][x]);
             System.out.println();
         }
-    }*/
+    }
+    
 }

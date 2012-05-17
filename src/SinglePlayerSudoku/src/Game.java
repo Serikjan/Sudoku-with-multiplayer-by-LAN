@@ -8,7 +8,7 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class Game extends JFrame {
 	
-	public Game() {
+	public Game(String p_name) {
         super("Sudoku");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
@@ -22,12 +22,13 @@ public class Game extends JFrame {
         board.setController(sudokuController);
         
         NumberController buttonController = new NumberController(game);
-        NumberButton numbers = new NumberButton();
+        NumberButton numbers = new NumberButton(p_name);
         numbers.setController(buttonController);
         add(numbers, BorderLayout.EAST);
         //setJMenuBar(gamemenu); 
         game.addObserver(numbers);
         game.addObserver(board);
+        game.print();
         
         pack(); 
         setLocationRelativeTo(null);
