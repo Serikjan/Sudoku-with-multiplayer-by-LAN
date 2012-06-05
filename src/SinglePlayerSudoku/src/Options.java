@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,13 +30,17 @@ public class Options extends JFrame implements ActionListener
 	private JCheckBox checkSolver;
 	private JCheckBox checkPause;
 	private JCheckBox checkTime;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboSolveN;
+	@SuppressWarnings("rawtypes")
 	private JComboBox comboPauseN;
 	private JTextField textMin;
 	private JTextField textSec;
 	private JButton buttonOk;
 	private JButton buttonCancel;
+	private ConfigFile config;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	Options()
 	{
 		this.setLayout(null);
@@ -45,6 +48,8 @@ public class Options extends JFrame implements ActionListener
 		this.setResizable(false);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Options");
+		
+		config = ConfigFile.getInstance();
 		
 		radioEasy = new JRadioButton("Easy", true);
 		radioEasy.setName("Easy");
@@ -92,6 +97,7 @@ public class Options extends JFrame implements ActionListener
 		{
 			comboSolveN.addItem(i);
 		}
+		comboSolveN.setSelectedItem(3);
 		comboSolveN.setBounds(260, 80, 40, 25);
 		comboSolveN.addActionListener(this);
 		
@@ -106,6 +112,7 @@ public class Options extends JFrame implements ActionListener
 		{
 			comboPauseN.addItem(i);
 		}
+		comboPauseN.setSelectedItem(3);
 		comboPauseN.setBounds(260, 115, 40, 25);
 		comboPauseN.addActionListener(this);
 		
@@ -120,12 +127,14 @@ public class Options extends JFrame implements ActionListener
 		
 		textMin = new JTextField("10");
 		textMin.setBounds(60, 150, 30, 25);
+		textMin.setEnabled(false);
 		
 		labelMin = new JLabel("min ");
 		labelMin.setBounds(90, 150, 30, 25);
 
 		textSec = new JTextField("0");
 		textSec.setBounds(120, 150, 30, 25);
+		textSec.setEnabled(false);
 
 		labelSec = new JLabel("sec");
 		labelSec.setBounds(150, 150, 30, 25);
