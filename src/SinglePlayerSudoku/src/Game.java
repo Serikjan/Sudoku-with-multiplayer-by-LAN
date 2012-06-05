@@ -6,7 +6,8 @@ import javax.swing.*;
  * @author HP
  */
 @SuppressWarnings("serial")
-public class Game extends JFrame {
+public class Game extends JFrame
+{
 	
 	public Game(String p_name) {
         super("Sudoku");
