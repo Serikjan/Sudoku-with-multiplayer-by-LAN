@@ -6,9 +6,6 @@
 		<showPoint>true</showPoint>
 		<useSolver time="3">false</useSolver>
 		<usePause time="3">true</usePause>
-		<time default="true">
-			<minute>10</minute>
-			<second>0</second>
-		</time>
-	</options>
+		<min>05</min>
+		<sec>00</sec></options>
 </config>

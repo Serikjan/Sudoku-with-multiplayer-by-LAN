@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
-
+import javax.swing.*;
 
 public class Generator extends Observable {
 	private int[][] solution;       // Generated solution.
@@ -39,9 +39,16 @@ public class Generator extends Observable {
      */
     public void checkGame() {
         selectedNumber = 0;
+        int done = 0;
         for (int y = 0; y < 9; y++) {
             for (int x = 0; x < 9; x++)
-                check[y][x] = game[y][x] == solution[y][x];
+                if(game[y][x] == solution[y][x]){
+                	check[y][x] = true;
+                	done=+1; 
+                }
+        }
+        if(done==81){
+        	JOptionPane.showMessageDialog(null, "You win");
         }
         setChanged();
         notifyObservers(UpdateAction.CHECK);

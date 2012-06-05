@@ -48,7 +48,8 @@ class ConfigFile
 					System.out.println("Show point : " + getTagValue("showPoint", eElement));
 					this.help=Boolean.parseBoolean(getTagValue("useSolver", eElement));
 					System.out.println("Use pause : " + getTagValue("usePause", eElement));
-					System.out.println("Time : " + getTagValue("time", eElement));
+					this.min=Integer.parseInt(getTagValue("min", eElement));
+					this.sec=Integer.parseInt(getTagValue("sec", eElement));
 				}
 			}
 		}
