@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<config>
+	<options>
+		<difficult>Easy</difficult>
+		<nodeChecker>true</nodeChecker>
+		<showPoint>true</showPoint>
+		<useSolver time="3">true</useSolver>
+		<usePause time="3">true</usePause>
+		<time default="true">
+			<minute>10</minute>
+			<second>0</second>
+		</time>
+	</options>
+</config>
