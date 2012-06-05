@@ -7,6 +7,7 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class Board extends JPanel implements Observer {
 
+	private static final Color COLOR_CANDIDATE = new Color(102, 153, 255);
     private Cell[][] cells;       // Array of cells.
     private JPanel[][] panels;      // Panels holding the cells.
 
@@ -46,7 +47,8 @@ public class Board extends JPanel implements Observer {
                 break;
             case SELECTED_NUMBER:
             case CANDIDATES:
-            
+            case HELP:
+                setCandidates((Generator)o);
                 break;
         }
     }
@@ -74,7 +76,19 @@ public class Board extends JPanel implements Observer {
             }
         }
     }   
-
+    
+    /**
+     * Shows the candidates according to given game.
+     */
+    private void setCandidates(Generator game) {
+        for (int y = 0; y < 9; y++) {
+            for (int x = 0; x < 9; x++) {
+                cells[y][x].setBackground(Color.WHITE);
+                if (game.isHelp() && game.isSelectedNumberCandidate(x, y))
+                    cells[y][x].setBackground(COLOR_CANDIDATE);
+            }
+        }
+    }
     
     public void setController(Controller sudokuController) {
         for (int y = 0; y < 3; y++) {

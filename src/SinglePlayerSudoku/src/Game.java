@@ -8,13 +8,16 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class Game extends JFrame
 {
-	
+    private ConfigFile config;
+
 	public Game(String p_name) {
+		
         super("Sudoku");
+        config = ConfigFile.getInstance();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
         
-        Generator game = new Generator();
+        Generator game = new Generator(config.help);
         //game.print();  
         Board board = new Board();
         Controller sudokuController = new Controller(board, game);

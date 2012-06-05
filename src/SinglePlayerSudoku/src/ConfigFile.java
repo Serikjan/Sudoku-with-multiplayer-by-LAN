@@ -13,7 +13,7 @@ class ConfigFile
 	private int difficult;
 	private boolean useNode;
 	private boolean showPoint;
-	private int useSolve;
+	public boolean help;
 	private int usePause;
 	private boolean timeDefault;
 	private int min;
@@ -23,7 +23,7 @@ class ConfigFile
 	private ConfigFile()
 	{
 		
-		//readDataFromFile(“config.ini”);
+		//readDataFromFile(ï¿½config.iniï¿½);
 		try 
 		{
 			File configFile = new File("config.xml");
@@ -46,7 +46,7 @@ class ConfigFile
 					System.out.println("Difficulty : " + getTagValue("difficult", eElement));
 					System.out.println("Node checker : " + getTagValue("nodeChecker", eElement));
 					System.out.println("Show point : " + getTagValue("showPoint", eElement));
-					System.out.println("Use solver : " + getTagValue("useSolver", eElement));
+					this.help=Boolean.parseBoolean(getTagValue("useSolver", eElement));
 					System.out.println("Use pause : " + getTagValue("usePause", eElement));
 					System.out.println("Time : " + getTagValue("time", eElement));
 				}
@@ -67,7 +67,7 @@ class ConfigFile
 	
 	public void writeConfig()
 	{
-		//writeDataToFile(“config.ini”);
+		//writeDataToFile(ï¿½config.iniï¿½);
 	}
 	
 	private static String getTagValue(String sTag, Element eElement)
