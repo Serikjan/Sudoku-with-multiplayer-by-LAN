@@ -36,6 +36,7 @@ public class Generator extends Observable {
     /**
      * Checks user input with the solution and puts it into a check matrix.
      * All observers will be notified, update action: check.
+     * Win or not.
      */
     public void checkGame() {
         selectedNumber = 0;
