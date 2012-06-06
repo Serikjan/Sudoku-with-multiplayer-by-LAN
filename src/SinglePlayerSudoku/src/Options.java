@@ -1,6 +1,8 @@
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -15,7 +17,7 @@ import javax.swing.JTextField;
 
 
 @SuppressWarnings("serial")
-public class Options extends JFrame implements ActionListener
+public class Options extends JFrame implements ActionListener, KeyListener
 {
 	private JLabel labelTime;
 	private JLabel labelMin;
@@ -52,13 +54,10 @@ public class Options extends JFrame implements ActionListener
 		config = ConfigFile.getInstance();
 		
 		radioEasy = new JRadioButton("Easy");
-		radioEasy.setName("Easy");
 		radioEasy.addActionListener(this);
 		radioMedium = new JRadioButton("Medium");
-		radioMedium.setName("Medium");
 		radioMedium.addActionListener(this);
 		radioHard = new JRadioButton("Hard");
-		radioHard.setName("Hard");
 		radioHard.addActionListener(this);
 		switch(config.getDifficult())
 		{
@@ -90,8 +89,6 @@ public class Options extends JFrame implements ActionListener
 		panelDiff.setBorder(BorderFactory.createTitledBorder("Difficulty:"));
 		
 		checkNode = new JCheckBox("Use node checker");
-		checkNode.setName("NodeChecker");
-		checkNode.setSelected(true);
 		checkNode.setBounds(160, 10, 200, 25);
 		checkNode.addActionListener(this);
 		if(config.getUseNode())
@@ -100,8 +97,6 @@ public class Options extends JFrame implements ActionListener
 			checkNode.setSelected(false);
 		
 		checkPoint = new JCheckBox("Show points");
-		checkPoint.setName("ShowPoint");
-		checkPoint.setSelected(true);
 		checkPoint.setBounds(160, 45, 150, 25);
 		checkPoint.addActionListener(this);
 		if(config.getShowPoint())
@@ -110,7 +105,6 @@ public class Options extends JFrame implements ActionListener
 			checkPoint.setSelected(false);
 		
 		checkSolver = new JCheckBox("Use solve");
-		checkSolver.setName("UseSolver");
 		checkSolver.setBounds(160, 80, 100, 25);
 		checkSolver.addActionListener(this);
 		
@@ -138,7 +132,6 @@ public class Options extends JFrame implements ActionListener
 		}
 		
 		checkPause = new JCheckBox("Use pause");
-		checkPause.setName("UsePause");
 		checkPause.setBounds(160, 115, 100, 25);
 		checkPause.addActionListener(this);
 		
@@ -166,21 +159,22 @@ public class Options extends JFrame implements ActionListener
 		}
 		
 		checkTime = new JCheckBox("Time default (10 min)");
-		checkTime.setName("Set Time");
 		checkTime.setBounds(10, 115, 150, 25);
 		checkTime.addActionListener(this);
 		
 		labelTime = new JLabel("Time: ");
 		labelTime.setBounds(15, 150, 40, 25);
 		
-		textMin = new JTextField("10");
+		textMin = new JTextField();
 		textMin.setBounds(60, 150, 30, 25);
+		textMin.addKeyListener(this);
 		
 		labelMin = new JLabel("min ");
 		labelMin.setBounds(90, 150, 30, 25);
 
-		textSec = new JTextField("0");
+		textSec = new JTextField();
 		textSec.setBounds(120, 150, 30, 25);
+		textSec.addKeyListener(this);
 
 		labelSec = new JLabel("sec");
 		labelSec.setBounds(150, 150, 30, 25);
@@ -201,7 +195,7 @@ public class Options extends JFrame implements ActionListener
 			textSec.setEnabled(true);
 		}
 
-		buttonOk = new JButton("OK");
+		buttonOk = new JButton("Apply");
 		buttonOk.setBounds(80, 185, 80, 25);
 		buttonOk.addActionListener(this);
 
@@ -226,8 +220,114 @@ public class Options extends JFrame implements ActionListener
 		this.add(buttonCancel);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void actionPerformed(ActionEvent e)
+	{
+		// TODO Auto-generated method stub
+		if (e.getActionCommand().equalsIgnoreCase("Apply"))
+		{
+			this.dispose();
+			Main mainDialog = new Main();
+			mainDialog.show();
+		}
+		else if (e.getActionCommand().equalsIgnoreCase("Cancel"))
+		{
+			this.dispose();
+			Main mainDialog = new Main();
+			mainDialog.show();
+		}
+		else if (e.getActionCommand().equalsIgnoreCase("Easy"))
+		{
+			this.config.setDifficult(1);
+		}
+		else if (e.getActionCommand().equalsIgnoreCase("Medium"))
+		{
+			this.config.setDifficult(2);
+		}
+		else if (e.getActionCommand().equalsIgnoreCase("Hard"))
+		{
+			this.config.setDifficult(3);
+		}
+		else if (e.getActionCommand().equalsIgnoreCase("Use node checker"))
+		{
+			if (this.config.getUseNode())
+				this.config.setUseNode(false);
+			else
+				this.config.setUseNode(true);
+		}
+		else if (e.getActionCommand().equalsIgnoreCase("Show points"))
+		{
+			if (this.config.getShowPoint())
+				this.config.setShowPoint(false);
+			else
+				this.config.setShowPoint(true);
+		}
+		else if (e.getActionCommand().equalsIgnoreCase("Use solve"))
+		{
+			if (checkSolver.isSelected())
+			{
+				comboSolveN.setEnabled(true);
+				this.config.setUseSolve(Integer.parseInt(comboSolveN.getSelectedItem().toString()));
+			}
+			else
+			{
+				comboSolveN.setEnabled(false);
+				this.config.setUseSolve(0);
+			}
+		}
+		else if (e.getActionCommand().equalsIgnoreCase("Use pause"))
+		{
+			if (checkPause.isSelected())
+			{
+				comboPauseN.setEnabled(true);
+				this.config.setUsePause(Integer.parseInt(comboPauseN.getSelectedItem().toString()));
+			}
+			else
+			{
+				comboPauseN.setEnabled(false);
+				this.config.setUsePause(0);
+			}
+		}
+		else if (e.getActionCommand().equalsIgnoreCase("Time default (10 min)"))
+		{
+			if (checkTime.isSelected())
+			{
+				textMin.setEnabled(false);
+				textSec.setEnabled(false);
+				this.config.setMin(10);
+				this.config.setSec(0);
+			}
+			else
+			{
+				textMin.setEnabled(true);
+				textSec.setEnabled(true);
+				this.config.setMin(Integer.parseInt(textMin.getText()));
+				this.config.setSec(Integer.parseInt(textSec.getText()));
+			}
+		}
+		else
+		{
+			System.out.println("Error in ActionListener!");
+		}
+	}
+
+	@Override
+	public void keyPressed(KeyEvent arg0)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent arg0)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent arg0)
 	{
 		// TODO Auto-generated method stub
 		
