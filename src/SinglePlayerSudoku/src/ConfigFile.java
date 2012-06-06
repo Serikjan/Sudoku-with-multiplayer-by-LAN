@@ -15,40 +15,42 @@ class ConfigFile
 	private boolean showPoint;
 	private int useSolve;
 	private int usePause;
-	private boolean timeDefault;
 	private int min;
 	private int sec;
 	private static ConfigFile the_instance = null;
 	
+	//ConfigFile method is read data from config.xml
 	private ConfigFile()
 	{
-		
-		//readDataFromFile(“config.ini”);
-		try 
+		try
 		{
 			File configFile = new File("config.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(configFile);
 			
-			System.out.println("Root element : " + doc.getDocumentElement().getNodeName());
-			
 			NodeList nList = doc.getElementsByTagName("options");
-			
 			for (int temp = 0; temp < nList.getLength(); temp++)
 			{
 				Node nNode = nList.item(temp);
 				if (nNode.getNodeType() == Node.ELEMENT_NODE)
 				{
-					Element eElement = (Element) nNode; 
-					//NodeList nlList = eElement.getElementsByTagName("useSolver").item(0).getChildNodes();
-			        //Node nValue = (Node) nlList.item(0);
-					System.out.println("Difficulty : " + getTagValue("difficult", eElement));
-					System.out.println("Node checker : " + getTagValue("nodeChecker", eElement));
-					System.out.println("Show point : " + getTagValue("showPoint", eElement));
-					System.out.println("Use solver : " + getTagValue("useSolver", eElement));
-					System.out.println("Use pause : " + getTagValue("usePause", eElement));
-					System.out.println("Time : " + getTagValue("time", eElement));
+					Element eElement = (Element) nNode;
+					int i = Integer.parseInt(getTagValue("difficult", eElement));
+					setDifficult(i);
+					boolean b = Boolean.parseBoolean(getTagValue("nodeChecker", eElement));
+					setUseNode(b);
+					b = Boolean.parseBoolean(getTagValue("showPoint", eElement));
+					setShowPoint(b);
+					System.out.println(b);
+					i = Integer.parseInt(getTagValue("useSolver", eElement));
+					setUseSolve(i);
+					i = Integer.parseInt(getTagValue("usePause", eElement));
+					setUsePause(i);
+					i = Integer.parseInt(getTagValue("minute", eElement));
+					setMin(i);
+					i = Integer.parseInt(getTagValue("second", eElement));
+					setSec(i);
 				}
 			}
 		}
@@ -75,5 +77,75 @@ class ConfigFile
 		NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
         Node nValue = (Node) nlList.item(0);
         return nValue.getNodeValue();
+	}
+	
+	public void setDifficult(int diff)
+	{
+		this.difficult = diff;
+	}
+	
+	public int getDifficult()
+	{
+		return this.difficult;
+	}
+	
+	public void setUseNode(boolean uNode)
+	{
+		this.useNode = uNode;
+	}
+	
+	public boolean getUseNode()
+	{
+		return this.useNode;
+	}
+	
+	public void setShowPoint(boolean sPoint)
+	{
+		this.showPoint = sPoint;
+	}
+	
+	public boolean getShowPoint()
+	{
+		return this.showPoint;
+	}
+	
+	public void setUseSolve(int uSolve)
+	{
+		this.useSolve = uSolve;
+	}
+	
+	public int getUseSolve()
+	{
+		return this.useSolve;
+	}
+	
+	public void setUsePause(int uPause)
+	{
+		this.usePause = uPause;
+	}
+	
+	public int getUsePause()
+	{
+		return this.usePause;
+	}
+	
+	public void setMin(int m)
+	{
+		this.min = m;
+	}
+	
+	public int getMin()
+	{
+		return this.min;
+	}
+	
+	public void setSec(int s)
+	{
+		this.sec = s;
+	}
+	
+	public int getSec()
+	{
+		return this.sec;
 	}
 }

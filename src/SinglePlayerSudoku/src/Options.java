@@ -51,7 +51,7 @@ public class Options extends JFrame implements ActionListener
 		
 		config = ConfigFile.getInstance();
 		
-		radioEasy = new JRadioButton("Easy", true);
+		radioEasy = new JRadioButton("Easy");
 		radioEasy.setName("Easy");
 		radioEasy.addActionListener(this);
 		radioMedium = new JRadioButton("Medium");
@@ -60,6 +60,21 @@ public class Options extends JFrame implements ActionListener
 		radioHard = new JRadioButton("Hard");
 		radioHard.setName("Hard");
 		radioHard.addActionListener(this);
+		switch(config.getDifficult())
+		{
+			case 1:
+				radioEasy.setSelected(true);
+				break;
+			case 2:
+				radioMedium.setSelected(true);
+				break;
+			case 3:
+				radioHard.setSelected(true);
+				break;
+			default:
+				System.out.println("Error in level...!");
+				break;
+		}
 		
 		groupDiff = new ButtonGroup();
 		groupDiff.add(radioEasy);
@@ -79,12 +94,20 @@ public class Options extends JFrame implements ActionListener
 		checkNode.setSelected(true);
 		checkNode.setBounds(160, 10, 200, 25);
 		checkNode.addActionListener(this);
+		if(config.getUseNode())
+			checkNode.setSelected(true);
+		else
+			checkNode.setSelected(false);
 		
 		checkPoint = new JCheckBox("Show points");
 		checkPoint.setName("ShowPoint");
 		checkPoint.setSelected(true);
 		checkPoint.setBounds(160, 45, 150, 25);
 		checkPoint.addActionListener(this);
+		if(config.getShowPoint())
+			checkPoint.setSelected(true);
+		else
+			checkPoint.setSelected(false);
 		
 		checkSolver = new JCheckBox("Use solve");
 		checkSolver.setName("UseSolver");
