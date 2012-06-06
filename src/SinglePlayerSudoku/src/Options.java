@@ -49,7 +49,7 @@ public class Options extends JFrame implements ActionListener
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Options");
 		
-		
+		config = ConfigFile.getInstance();
 		
 		radioEasy = new JRadioButton("Easy");
 		radioEasy.setName("Easy");
@@ -111,7 +111,6 @@ public class Options extends JFrame implements ActionListener
 		
 		checkSolver = new JCheckBox("Use solve");
 		checkSolver.setName("UseSolver");
-		checkSolver.setSelected(true);
 		checkSolver.setBounds(160, 80, 100, 25);
 		checkSolver.addActionListener(this);
 		
@@ -120,13 +119,26 @@ public class Options extends JFrame implements ActionListener
 		{
 			comboSolveN.addItem(i);
 		}
-		comboSolveN.setSelectedItem(3);
 		comboSolveN.setBounds(260, 80, 40, 25);
 		comboSolveN.addActionListener(this);
+		if (config.getUseSolve() == 0)
+		{
+			checkSolver.setSelected(false);
+			comboSolveN.setEnabled(false);
+		}
+		else if (config.getUseSolve() < 10)
+		{
+			checkSolver.setSelected(true);
+			comboSolveN.setEnabled(true);
+			comboSolveN.setSelectedItem(config.getUseSolve());
+		}
+		else
+		{
+			System.out.println("Error in Use Solver...!");
+		}
 		
 		checkPause = new JCheckBox("Use pause");
 		checkPause.setName("UsePause");
-		checkPause.setSelected(true);
 		checkPause.setBounds(160, 115, 100, 25);
 		checkPause.addActionListener(this);
 		
@@ -135,13 +147,26 @@ public class Options extends JFrame implements ActionListener
 		{
 			comboPauseN.addItem(i);
 		}
-		comboPauseN.setSelectedItem(3);
 		comboPauseN.setBounds(260, 115, 40, 25);
 		comboPauseN.addActionListener(this);
+		if (config.getUsePause() == 0)
+		{
+			checkPause.setSelected(false);
+			comboPauseN.setEnabled(false);
+		}
+		else if (config.getUsePause() < 10)
+		{
+			checkPause.setSelected(true);
+			comboPauseN.setEnabled(true);
+			comboPauseN.setSelectedItem(config.getUsePause());
+		}
+		else
+		{
+			System.out.println("Error in Use Pause...!");
+		}
 		
 		checkTime = new JCheckBox("Time default (10 min)");
 		checkTime.setName("Set Time");
-		checkTime.setSelected(true);
 		checkTime.setBounds(10, 115, 150, 25);
 		checkTime.addActionListener(this);
 		
@@ -150,17 +175,31 @@ public class Options extends JFrame implements ActionListener
 		
 		textMin = new JTextField("10");
 		textMin.setBounds(60, 150, 30, 25);
-		textMin.setEnabled(false);
 		
 		labelMin = new JLabel("min ");
 		labelMin.setBounds(90, 150, 30, 25);
 
 		textSec = new JTextField("0");
 		textSec.setBounds(120, 150, 30, 25);
-		textSec.setEnabled(false);
 
 		labelSec = new JLabel("sec");
 		labelSec.setBounds(150, 150, 30, 25);
+		if ((config.getMin() == 10)&&(config.getSec() == 0))
+		{
+			checkTime.setSelected(true);
+			textMin.setText("10");
+			textMin.setEnabled(false);
+			textSec.setText("0");
+			textSec.setEnabled(false);
+		}
+		else
+		{
+			checkTime.setSelected(false);
+			textMin.setText(Integer.toString(config.getMin()));
+			textMin.setEnabled(true);
+			textSec.setText(Integer.toString(config.getSec()));
+			textSec.setEnabled(true);
+		}
 
 		buttonOk = new JButton("OK");
 		buttonOk.setBounds(80, 185, 80, 25);

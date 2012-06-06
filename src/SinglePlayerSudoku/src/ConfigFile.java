@@ -15,6 +15,7 @@ class ConfigFile
 	private boolean showPoint;
 	public boolean help;
 	private int usePause;
+	private int useSolve;
 	private int min;
 	private int sec;
 	private static ConfigFile the_instance = null;
@@ -22,13 +23,7 @@ class ConfigFile
 	//ConfigFile method is read data from config.xml
 	private ConfigFile()
 	{
-<<<<<<< HEAD
-		try
-=======
-		
-		//readDataFromFile(�config.ini�);
 		try 
->>>>>>> 9af7eb5a1dead2f9b1c9eee187db70411093ea5c
 		{
 			File configFile = new File("config.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -41,7 +36,6 @@ class ConfigFile
 				Node nNode = nList.item(temp);
 				if (nNode.getNodeType() == Node.ELEMENT_NODE)
 				{
-<<<<<<< HEAD
 					Element eElement = (Element) nNode;
 					int i = Integer.parseInt(getTagValue("difficult", eElement));
 					setDifficult(i);
@@ -49,7 +43,6 @@ class ConfigFile
 					setUseNode(b);
 					b = Boolean.parseBoolean(getTagValue("showPoint", eElement));
 					setShowPoint(b);
-					System.out.println(b);
 					i = Integer.parseInt(getTagValue("useSolver", eElement));
 					setUseSolve(i);
 					i = Integer.parseInt(getTagValue("usePause", eElement));
@@ -58,18 +51,6 @@ class ConfigFile
 					setMin(i);
 					i = Integer.parseInt(getTagValue("second", eElement));
 					setSec(i);
-=======
-					Element eElement = (Element) nNode; 
-					//NodeList nlList = eElement.getElementsByTagName("useSolver").item(0).getChildNodes();
-			        //Node nValue = (Node) nlList.item(0);
-					System.out.println("Difficulty : " + getTagValue("difficult", eElement));
-					System.out.println("Node checker : " + getTagValue("nodeChecker", eElement));
-					System.out.println("Show point : " + getTagValue("showPoint", eElement));
-					this.help=Boolean.parseBoolean(getTagValue("useSolver", eElement));
-					System.out.println("Use pause : " + getTagValue("usePause", eElement));
-					this.min=Integer.parseInt(getTagValue("min", eElement));
-					this.sec=Integer.parseInt(getTagValue("sec", eElement));
->>>>>>> 9af7eb5a1dead2f9b1c9eee187db70411093ea5c
 				}
 			}
 		}
@@ -88,7 +69,7 @@ class ConfigFile
 	
 	public void writeConfig()
 	{
-		//writeDataToFile(�config.ini�);
+		//writeDataToFile("config.xml");
 	}
 	
 	private static String getTagValue(String sTag, Element eElement)

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <config>
 	<options>
-		<difficult>1</difficult>
+		<difficult>2</difficult>
 		<nodeChecker>true</nodeChecker>
-		<showPoint>true</showPoint>
-		<useSolver>3</useSolver>
-		<usePause>3</usePause>
+		<showPoint>false</showPoint>
+		<useSolver>9</useSolver>
+		<usePause>0</usePause>
 		<minute>10</minute>
-		<second>0</second>
+		<second>25</second>
 	</options>
 </config>
