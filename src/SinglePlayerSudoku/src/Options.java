@@ -30,9 +30,6 @@ public class Options extends JFrame implements ActionListener
 	private JCheckBox checkSolver;
 	private JCheckBox checkPause;
 	private JCheckBox checkTime;
-	@SuppressWarnings("rawtypes")
-	private JComboBox comboSolveN;
-	@SuppressWarnings("rawtypes")
 	private JComboBox comboPauseN;
 	private JTextField textMin;
 	private JTextField textSec;
@@ -112,30 +109,13 @@ public class Options extends JFrame implements ActionListener
 		checkSolver = new JCheckBox("Use solve");
 		checkSolver.setName("UseSolver");
 		checkSolver.setBounds(160, 80, 100, 25);
-		checkSolver.addActionListener(this);
+		checkSolver.addActionListener(this);		
 		
-		comboSolveN = new JComboBox();
-		for(int i=1; i<10; i++)
-		{
-			comboSolveN.addItem(i);
-		}
-		comboSolveN.setBounds(260, 80, 40, 25);
-		comboSolveN.addActionListener(this);
-		if (config.getUseSolve() == 0)
-		{
-			checkSolver.setSelected(false);
-			comboSolveN.setEnabled(false);
-		}
-		else if (config.getUseSolve() < 10)
-		{
-			checkSolver.setSelected(true);
-			comboSolveN.setEnabled(true);
-			comboSolveN.setSelectedItem(config.getUseSolve());
-		}
+		if(config.getUseSolve())
+			checkPoint.setSelected(true);
 		else
-		{
-			System.out.println("Error in Use Solver...!");
-		}
+			checkPoint.setSelected(false);
+		
 		
 		checkPause = new JCheckBox("Use pause");
 		checkPause.setName("UsePause");
@@ -211,7 +191,6 @@ public class Options extends JFrame implements ActionListener
 		
 		this.add(panelDiff);
 		this.add(checkNode);
-		this.add(comboSolveN);
 		this.add(checkPoint);
 		this.add(comboPauseN);
 		this.add(checkSolver);

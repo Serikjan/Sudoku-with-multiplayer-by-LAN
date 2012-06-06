@@ -4,7 +4,7 @@
 		<difficult>2</difficult>
 		<nodeChecker>true</nodeChecker>
 		<showPoint>false</showPoint>
-		<useSolver>9</useSolver>
+		<useSolver>false</useSolver>
 		<usePause>0</usePause>
 		<minute>10</minute>
 		<second>25</second>

@@ -51,8 +51,10 @@ public class Generator extends Observable {
         if(done==81){
         	JOptionPane.showMessageDialog(null, "You win");
         }
-        setChanged();
-        notifyObservers(UpdateAction.CHECK);
+        if(this.isHelp()){
+        	setChanged();
+        	notifyObservers(UpdateAction.CHECK);
+        }
     }
 
    

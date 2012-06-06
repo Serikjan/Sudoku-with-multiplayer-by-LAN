@@ -15,7 +15,6 @@ class ConfigFile
 	private boolean showPoint;
 	public boolean help;
 	private int usePause;
-	private int useSolve;
 	private int min;
 	private int sec;
 	private static ConfigFile the_instance = null;
@@ -43,8 +42,8 @@ class ConfigFile
 					setUseNode(b);
 					b = Boolean.parseBoolean(getTagValue("showPoint", eElement));
 					setShowPoint(b);
-					i = Integer.parseInt(getTagValue("useSolver", eElement));
-					setUseSolve(i);
+					help = Boolean.parseBoolean(getTagValue("useSolver", eElement));
+					setUseSolve(help);
 					i = Integer.parseInt(getTagValue("usePause", eElement));
 					setUsePause(i);
 					i = Integer.parseInt(getTagValue("minute", eElement));
@@ -109,14 +108,14 @@ class ConfigFile
 		return this.showPoint;
 	}
 	
-	public void setUseSolve(int uSolve)
+	public void setUseSolve(boolean uSolve)
 	{
-		this.useSolve = uSolve;
+		this.help = uSolve;
 	}
 	
-	public int getUseSolve()
+	public boolean getUseSolve()
 	{
-		return this.useSolve;
+		return this.help;
 	}
 	
 	public void setUsePause(int uPause)
