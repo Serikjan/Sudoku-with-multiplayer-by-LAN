@@ -4,9 +4,16 @@
 		<difficult>1</difficult>
 		<nodeChecker>1</nodeChecker>
 		<showPoint>true</showPoint>
+<<<<<<< HEAD
 		<useSolver>3</useSolver>
 		<usePause>3</usePause>
 		<minute>10</minute>
 		<second>0</second>
 	</options>
+=======
+		<useSolver time="3">true</useSolver>
+		<usePause time="3">true</usePause>
+		<min>05</min>
+		<sec>00</sec></options>
+>>>>>>> 9af7eb5a1dead2f9b1c9eee187db70411093ea5c
 </config>

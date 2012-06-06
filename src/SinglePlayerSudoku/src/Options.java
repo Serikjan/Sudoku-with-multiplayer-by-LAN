@@ -49,7 +49,7 @@ public class Options extends JFrame implements ActionListener
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Options");
 		
-		config = ConfigFile.getInstance();
+		
 		
 		radioEasy = new JRadioButton("Easy");
 		radioEasy.setName("Easy");

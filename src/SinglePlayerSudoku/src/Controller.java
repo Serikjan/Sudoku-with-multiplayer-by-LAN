@@ -48,6 +48,7 @@ public class Controller implements MouseListener {
             }
 
         }
+        game.checkGame();
     }
 
     public void mouseClicked(MouseEvent e) { }

@@ -2,20 +2,24 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Observable;
-
+import javax.swing.*;
 
 public class Generator extends Observable {
 	private int[][] solution;       // Generated solution.
     private int[][] game;           // Generated game with user input.
     private boolean[][] check;      // Holder for checking validity of game.
     private int selectedNumber;     // Selected number by user.
+    private boolean help;			// Help turned on or off.
 
     /**
      * Constructor
      */
-    public Generator() {
+    
+    
+    public Generator(boolean help2) {
         newGame();
         check = new boolean[9][9];
+        help=help2;
     }
 
     /**
@@ -32,12 +36,20 @@ public class Generator extends Observable {
     /**
      * Checks user input with the solution and puts it into a check matrix.
      * All observers will be notified, update action: check.
+     * Win or not.
      */
     public void checkGame() {
         selectedNumber = 0;
+        int done = 0;
         for (int y = 0; y < 9; y++) {
             for (int x = 0; x < 9; x++)
-                check[y][x] = game[y][x] == solution[y][x];
+                if(game[y][x] == solution[y][x]){
+                	check[y][x] = true;
+                	done=+1; 
+                }
+        }
+        if(done==81){
+        	JOptionPane.showMessageDialog(null, "You win");
         }
         setChanged();
         notifyObservers(UpdateAction.CHECK);
@@ -107,7 +119,15 @@ public class Generator extends Observable {
     public boolean isCheckValid(int x, int y) {
         return check[y][x];
     }
-
+    
+    /**
+     * Returns whether help is turned on or off.
+     *
+     */
+    public boolean isHelp() {
+        return help;
+    }
+    
     /**
      * Returns whether given number is candidate on x axis for given game.
      */
@@ -128,6 +148,16 @@ public class Generator extends Observable {
                 return false;
         }
         return true;
+    }
+    
+
+    /**
+     * Sets help turned on or off.
+     */
+    public void setHelp(boolean help) {
+        this.help = help;
+        setChanged();
+        notifyObservers(UpdateAction.HELP);
     }
 
     /**
